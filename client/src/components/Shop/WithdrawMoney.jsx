@@ -61,6 +61,7 @@ const WithdrawMoney = () => {
           bankHolderName: "",
           bankAddress: "",
         });
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error.response.data.message);

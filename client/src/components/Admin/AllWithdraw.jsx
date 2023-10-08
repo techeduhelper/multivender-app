@@ -151,7 +151,7 @@ const AllWithdraw = () => {
             </select>
             <button
               type="submit"
-              className={`block ${styles.button} text-white !h-[42px] mt-4 text-[18px]`}
+              className={`block ${styles.button} text-white !h-[42px] mt-4 text-[18px] !bg-green-500`}
               onClick={handleSubmit}
             >
               Update

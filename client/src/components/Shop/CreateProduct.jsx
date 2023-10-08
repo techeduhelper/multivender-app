@@ -24,9 +24,20 @@ const CreateProduct = () => {
 
   useEffect(() => {
     if (error) {
+      setIsLoading(false);
       toast.error(error);
     }
     if (success) {
+      setName("");
+      setDescription("");
+      setCategory("");
+      setTags("");
+      setOriginalPrice("");
+      setDiscountPrice("");
+      setStock("");
+      setIsLoading(false);
+      setImages([]);
+      setIsLoading(false);
       toast.success("Product created successfully!");
       navigate("/dashboard");
       window.location.reload();
@@ -52,7 +63,7 @@ const CreateProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const newForm = new FormData();
 
     images.forEach((image) => {
@@ -217,12 +228,20 @@ const CreateProduct = () => {
               ))}
           </div>
           <br />
-          <div>
-            <input
-              type="submit"
-              value="Create"
-              className="mt-4 cursor-pointer appearance-none text-center block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-green-600"
-            />
+          <div className="flex justify-center mb-4">
+            <div className="mb-4">
+              {isLoading && (
+                <div className="inline-block animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+              )}
+            </div>
+            {!isLoading && (
+              <button
+                type="submit"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-full focus:outline-none focus:ring focus:ring-blue-200 w-2/3"
+              >
+                Create Product
+              </button>
+            )}
           </div>
         </div>
       </form>

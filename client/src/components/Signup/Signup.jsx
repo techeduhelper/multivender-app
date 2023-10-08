@@ -163,13 +163,20 @@ const Singup = () => {
               </div>
             </div>
 
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-              >
-                {isLoading ? "Signing Up..." : "Sign up"}
-              </button>
+            <div className="flex justify-center mb-4">
+              <div className="mb-4">
+                {isLoading && (
+                  <div className="inline-block animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+                )}
+              </div>
+              {!isLoading && (
+                <button
+                  type="submit"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-full focus:outline-none focus:ring focus:ring-blue-200 w-full"
+                >
+                  Sign up
+                </button>
+              )}
             </div>
             <div className={`${styles.noramlFlex} w-full`}>
               <h4>Already have an account?</h4>
