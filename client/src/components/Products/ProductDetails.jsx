@@ -376,7 +376,7 @@ const ProductDetailsInfo = ({
               </h5>
               <Link to="/">
                 <div
-                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
+                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3 !bg-pink-600`}
                 >
                   <h4 className="text-white">Visit Shop</h4>
                 </div>
