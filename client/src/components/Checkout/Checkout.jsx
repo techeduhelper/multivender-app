@@ -16,7 +16,7 @@ const Checkout = () => {
   const [userInfo, setUserInfo] = useState(false);
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
-  const [zipCode, setZipCode] = useState(null);
+  const [zipCode, setZipCode] = useState(""); // Initialize with an empty string
   const [couponCode, setCouponCode] = useState("");
   const [couponCodeData, setCouponCodeData] = useState(null);
   const [discountPrice, setDiscountPrice] = useState(null);
@@ -30,7 +30,7 @@ const Checkout = () => {
     if (
       address1 === "" ||
       address2 === "" ||
-      zipCode === null ||
+      zipCode === "" || // Check for an empty string
       country === "" ||
       city === ""
     ) {
@@ -94,7 +94,7 @@ const Checkout = () => {
         }
       }
       if (res.data.couponCode === null) {
-        toast.error("Coupon code doesn't exists!");
+        toast.error("Coupon code doesn't exist!");
         setCouponCode("");
       }
     });
@@ -105,8 +105,6 @@ const Checkout = () => {
   const totalPrice = couponCodeData
     ? (subTotalPrice + shipping - discountPercentenge).toFixed(2)
     : (subTotalPrice + shipping).toFixed(2);
-
-  console.log(discountPercentenge);
 
   return (
     <div className="w-full flex flex-col items-center py-8">
@@ -287,7 +285,7 @@ const ShippingInfo = ({
         <div>
           {user &&
             user.addresses.map((item, index) => (
-              <div className="w-full flex mt-1">
+              <div className="w-full flex mt-1" key={index}>
                 <input
                   type="checkbox"
                   className="mr-3"
@@ -342,7 +340,7 @@ const CartData = ({
         <input
           type="text"
           className={`${styles.input} h-[40px] pl-2`}
-          placeholder="Coupoun code"
+          placeholder="Coupon code"
           value={couponCode}
           onChange={(e) => setCouponCode(e.target.value)}
           required
