@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { server } from "../../server";
 import styles from "../../styles/styles";
 import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { MdTrackChanges } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
@@ -22,7 +23,6 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { getAllOrdersOfUser } from "../../redux/actions/order";
-import { DataGrid } from "@mui/x-data-grid";
 
 const ProfileContent = ({ active }) => {
   const { user, error, successMessage } = useSelector((state) => state.user);
@@ -217,10 +217,14 @@ const AllOrders = () => {
       headerName: "Status",
       minWidth: 130,
       flex: 0.7,
-      cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : "redColor";
+      renderCell: (params) => {
+        return (
+          <div
+            className={params.value === "Delivered" ? "greenColor" : "redColor"}
+          >
+            {params.value}
+          </div>
+        );
       },
     },
     {
@@ -390,10 +394,14 @@ const TrackOrder = () => {
       headerName: "Status",
       minWidth: 130,
       flex: 0.7,
-      cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : "redColor";
+      renderCell: (params) => {
+        return (
+          <div
+            className={params.value === "Delivered" ? "greenColor" : "redColor"}
+          >
+            {params.value}
+          </div>
+        );
       },
     },
     {
@@ -601,7 +609,7 @@ const Address = () => {
                 onClick={() => setOpen(false)}
               />
             </div>
-            <h1 className="text-center text-[25px] font-Poppins">
+            <h1 className="text-center text-[25px] font-Poppins ">
               Add New Address
             </h1>
             <div className="w-full">
@@ -733,10 +741,10 @@ const Address = () => {
           My Addresses
         </h1>
         <div
-          className={`${styles.button} !rounded-md`}
+          className={`${styles.button} !rounded-md !bg-pink-600`}
           onClick={() => setOpen(true)}
         >
-          <span className="text-[#fff]">Add New</span>
+          <span className="text-white font-medium">Add New</span>
         </div>
       </div>
       <br />

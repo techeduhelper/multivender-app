@@ -57,3 +57,11 @@ input[type="number"] {
 .scrollbar-width-none::-webkit-scrollbar-thumb {
   background: transparent;
 }
+
+.greenColor {
+  color: green;
+}
+
+.redColor {
+  color: red;
+}

@@ -5,8 +5,10 @@ import styles from "../../styles/styles";
 
 const Navbar = ({ active }) => {
   return (
-    <div className={styles.noramlFlex}>
-      {navItems.map((item) => (
+    <div
+      className={`${styles.noramlFlex} 400px:flex-col  800px:flex-row 400px:gap-4  800px:gap-0`}
+    >
+      {navItems.map((item, index) => (
         <div className="flex" key={item.index}>
           <Link
             to={item.url}
