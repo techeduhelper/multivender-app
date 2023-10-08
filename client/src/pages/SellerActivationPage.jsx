@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { server } from "../server";
 import Header from "./../components/Layout/Header";
 import Footer from "./../components/Layout/Footer";
 
 const SellerActivationPage = () => {
-  const { activation_token } = useParams();
+  const [searchParams] = useSearchParams();
+  const activation_token = searchParams.get("token");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 

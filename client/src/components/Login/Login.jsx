@@ -28,7 +28,7 @@ const Login = () => {
       .then((res) => {
         toast.success("Login Success!");
         setIsLoading(false);
-        navigate("/");
+        navigate("/profile");
         window.location.reload(true);
       })
       .catch((err) => {
@@ -116,9 +116,12 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="w-full h-10 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                className={`w-full h-10 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 ${
+                  isLoading ? "animate-spin" : ""
+                }`}
+                disabled={isLoading}
               >
-                {isLoading ? "Logging In..." : "Login"}
+                Login
               </button>
             </div>
             <div className="flex items-center justify-center">

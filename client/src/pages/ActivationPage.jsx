@@ -1,31 +1,31 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { server } from "../server";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 
-
 const ActivationPage = () => {
-  const { activation_token } = useParams();
+  const [searchParams] = useSearchParams();
+  const activation_token = searchParams.get("token");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (activation_token) {
       const sendRequest = async () => {
-        await axios
-          .post(`${server}/user/activation`, {
+        try {
+          const res = await axios.post(`${server}/user/activation`, {
             activation_token,
-          })
-          .then((res) => {
-            navigate("/login");
-          })
-          .catch((err) => {
-            setError(true);
-            navigate("/signup");
           });
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
+        } catch (err) {
+          setError(true);
+          navigate("/sign-up");
+        }
       };
       sendRequest();
     }

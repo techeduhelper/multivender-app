@@ -49,11 +49,20 @@ const AllWithdraw = () => {
     },
     {
       field: "status",
-      headerName: "status",
-      type: "text",
-      minWidth: 80,
-      flex: 0.5,
+      headerName: "Status",
+      minWidth: 130,
+      flex: 0.7,
+      renderCell: (params) => {
+        return (
+          <div
+            className={params.value === "succeed" ? "greenColor" : "redColor"}
+          >
+            {params.value}
+          </div>
+        );
+      },
     },
+    ,
     {
       field: "createdAt",
       headerName: "Request given at",
