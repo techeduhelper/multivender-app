@@ -28,7 +28,7 @@ const Login = () => {
       .then((res) => {
         toast.success("Login Success!");
         setIsLoading(false);
-        navigate("/profile");
+        navigate("/");
         window.location.reload(true);
       })
       .catch((err) => {
